@@ -7,19 +7,25 @@ import { config } from "dotenv";
 config();
 
 const app = express();
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
 const corsOptions = {
-    origin: [process.env.ALLOWED_SITE],
-    credentials: true
+  origin: [process.env.ALLOWED_SITE],
+  credentials: true
 };
-
 app.use(cors(corsOptions));
 
-app.use("/api/users", userRouter);
+// ✅ Fix the base path
+app.use("/api/auth", userRouter); // ← was /api/users
 app.use("/api/resumes", resumeRouter);
+
+// ✅ Optional but recommended root route
+app.get("/", (req, res) => {
+  res.send("Backend API is Live ✅");
+});
 
 export default app;
