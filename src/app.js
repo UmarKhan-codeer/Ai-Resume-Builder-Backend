@@ -14,7 +14,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: [process.env.ALLOWED_SITE],
+  origin: [
+    "https://ai-resume-builder-nine-pi.vercel.app",
+    "https://ai-resume-builder-git-main-umarkhan-codeers-projects.vercel.app",
+    "https://ai-resume-builder-njx7b4wlu-umarkhan-codeers-projects.vercel.app"
+  ],
   credentials: true
 };
 app.use(cors(corsOptions));
