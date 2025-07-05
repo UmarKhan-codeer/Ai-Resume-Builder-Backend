@@ -1,8 +1,7 @@
-version: "3.8"
 
 services:
   backend:
-    build: .
+    build: ./
     container_name: ai-resume-builder-backend
     ports:
       - "5001:5001"
@@ -10,7 +9,7 @@ services:
       - .env
     depends_on:
       - mongodb
-    command: ["node", "src/index.js"]
+    command: ["node", "index.js"]  # ✅ FIXED path
 
   mongodb:
     image: mongo:latest
